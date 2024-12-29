@@ -11,6 +11,8 @@ AramaKit is an unofficial Swift SDK for Tavily's Search and Extract APIs. The na
 - Image search with descriptions
 - Domain filtering
 - Raw content access
+- Extract raw content from any webpage
+- Batch URL content extraction
 
 ## Requirements
 
@@ -100,6 +102,41 @@ for result in response.results {
 }
 
 print("Response Time: \(response.responseTime) seconds")
+```
+
+### Extract Content from URLs
+
+```swift
+// Extract content from a single URL
+let extractResponse = try await client.extract(url: "https://example.com")
+
+// Access the extracted content
+if let result = extractResponse.results.first {
+    print("URL: \(result.url)")
+    print("Raw Content: \(result.rawContent)")
+}
+
+// Extract content from multiple URLs
+let urls = [
+    "https://example.com/page1",
+    "https://example.com/page2",
+    "https://invalid-url"
+]
+let multiResponse = try await client.extract(urls: urls)
+
+// Access successful extractions
+for result in multiResponse.results {
+    print("URL: \(result.url)")
+    print("Raw Content: \(result.rawContent)")
+}
+
+// Check for failed extractions
+for failure in multiResponse.failedResults {
+    print("Failed URL: \(failure.url)")
+    print("Error: \(failure.error)")
+}
+
+print("Response Time: \(multiResponse.responseTime) seconds")
 ```
 
 ## License
