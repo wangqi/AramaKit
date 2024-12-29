@@ -3,15 +3,10 @@ import Foundation
 public class AramaClient {
   internal let apiKey: String
   internal let baseURL = "https://api.tavily.com"
+  internal let session: URLSession
 
-  public init(apiKey: String) {
+  public init(apiKey: String, session: URLSession = .shared) {
     self.apiKey = apiKey
-  }
-
-  public enum AramaError: Error {
-    case invalidURL
-    case networkError(Error)
-    case invalidResponse
-    case apiError(String)
+    self.session = session
   }
 }

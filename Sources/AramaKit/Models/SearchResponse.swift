@@ -3,7 +3,6 @@ import Foundation
 public struct SearchResponse: Codable {
   public let query: String
   public let results: [SearchResult]
-  public let count: Int
   public let answer: String?
   public let responseTime: Double
   public let images: [ImageResult]?
@@ -11,7 +10,6 @@ public struct SearchResponse: Codable {
   private enum CodingKeys: String, CodingKey {
     case query
     case results
-    case count
     case answer
     case responseTime = "response_time"
     case images

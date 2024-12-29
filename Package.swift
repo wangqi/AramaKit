@@ -17,6 +17,9 @@ let package = Package(
   targets: [
     .target(
       name: "AramaKit",
-      dependencies: [])
+      dependencies: []),
+    .testTarget(
+      name: "AramaKitTests",
+      dependencies: ["AramaKit"]),
   ]
 )
