@@ -37,6 +37,14 @@ public struct SearchParameters {
   /// List of domains to exclude from search results.
   public let excludeDomains: [String]?
 
+  // exact date range for Topic Briefing // wangqi modified 2026-10-16
+  /// Optional first day of an exact date range (`YYYY-MM-DD`, sent as `start_date`).
+  /// When `startDate` or `endDate` is set, `days` is not sent.
+  public let startDate: String?
+
+  /// Optional last day of an exact date range (`YYYY-MM-DD`, sent as `end_date`).
+  public let endDate: String?
+
   /// Creates a new search parameters configuration.
   ///
   /// - Parameters:
@@ -62,7 +70,10 @@ public struct SearchParameters {
     includeDomains: [String]? = nil,
     excludeDomains: [String]? = nil,
     maxResults: Int? = nil,
-    days: Int? = nil
+    days: Int? = nil,
+    // exact date range for Topic Briefing // wangqi modified 2026-10-16
+    startDate: String? = nil,
+    endDate: String? = nil
   ) {
     self.query = query
     self.searchDepth = searchDepth
@@ -75,6 +86,9 @@ public struct SearchParameters {
     self.excludeDomains = excludeDomains
     self.maxResults = maxResults
     self.days = days
+    // exact date range for Topic Briefing // wangqi modified 2026-10-16
+    self.startDate = startDate
+    self.endDate = endDate
   }
 }
 

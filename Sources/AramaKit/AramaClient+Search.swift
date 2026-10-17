@@ -41,7 +41,12 @@ extension AramaClient {
       "max_results": parameters.maxResults ?? 5,
     ]
 
-    if let days = parameters.days {
+    // exact date range for Topic Briefing // wangqi modified 2026-10-16
+    // An exact range replaces the "last N days" window.
+    if parameters.startDate != nil || parameters.endDate != nil {
+      if let startDate = parameters.startDate { body["start_date"] = startDate }
+      if let endDate = parameters.endDate { body["end_date"] = endDate }
+    } else if let days = parameters.days {
       body["days"] = days
     }
 
